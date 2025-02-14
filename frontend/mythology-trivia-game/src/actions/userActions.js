@@ -6,16 +6,34 @@ import {
 } from './actionTypes';
 
 export const loginUser = (credentials) => async (dispatch) => {
+    console.log('Sending credentials:', credentials);
     try {
         dispatch({ type: USER_LOGIN_REQUEST });
 
-        const response = await fetch('https://loremasterbe.up.railway.app/auth/login/', {
+        const response = await fetch('http://localhost:5000/auth/login/', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include',
             body: JSON.stringify(credentials),
         });
 
+        console.log('Response status:', response.status);
         const data = await response.json();
+        console.log('Response data:', data);
+        // try {
+        //     dispatch({ type: USER_LOGIN_REQUEST });
+
+        //     const response = await fetch('http://localhost:5000/auth/login/', {
+        //         method: 'POST',
+        //         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        //         credentials: 'include',
+        //         body: JSON.stringify(credentials),
+        //     });
+
+        //     const data = await response.json();
 
         if (response.ok) {
             const expiresAt = new Date(new Date().getTime() + 2 * 60 * 60 * 1000); // 2 hours

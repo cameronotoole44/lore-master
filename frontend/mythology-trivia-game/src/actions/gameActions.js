@@ -28,18 +28,28 @@ export const fetchDailyChallenge = () => async (dispatch, getState) => {
     dispatch({ type: FETCH_DAILY_CHALLENGE_REQUEST });
 
     try {
-        const themeResponse = await fetch('https://loremasterbe.up.railway.app/random-theme/', {
+        const themeResponse = await fetch('http://localhost:5000/random-theme/', {
             method: 'GET',
-            headers: { 'Authorization': `Bearer ${token}` },
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            credentials: 'include'
         });
 
         if (themeResponse.ok) {
             const themeData = await themeResponse.json();
             const theme = themeData.theme;
 
-            const challengeResponse = await fetch(`https://loremasterbe.up.railway.app/daily-challenge?theme=${theme}/`, {
+            const challengeResponse = await fetch(`http://localhost:5000/daily-challenge/?theme=${theme}`, {
                 method: 'GET',
-                headers: { 'Authorization': `Bearer ${token}` },
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                credentials: 'include'
             });
 
             if (challengeResponse.ok) {
@@ -50,10 +60,14 @@ export const fetchDailyChallenge = () => async (dispatch, getState) => {
                     payload: challengeData
                 });
             } else {
-                throw new Error('Failed to fetch daily challenge');
+                const errorData = await challengeResponse.json();
+                console.error('Challenge response not ok:', errorData);
+                throw new Error(errorData.msg || 'Failed to fetch daily challenge');
             }
         } else {
-            throw new Error('Failed to fetch random theme');
+            const errorData = await themeResponse.json();
+            console.error('Theme response not ok:', errorData);
+            throw new Error(errorData.msg || 'Failed to fetch random theme');
         }
     } catch (error) {
         console.error('Error fetching daily challenge:', error);
@@ -74,7 +88,7 @@ export const submitAnswer = (questionId, selectedAnswer) => async (dispatch, get
     dispatch({ type: SUBMIT_DAILY_CHALLENGE_REQUEST });
 
     try {
-        const response = await fetch('https://loremasterbe.up.railway.app/submit-daily-challenge/', {
+        const response = await fetch('http://localhost:5000/submit-daily-challenge/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +134,7 @@ export const fetchQuestions = (theme) => async (dispatch) => {
     }
 
     try {
-        const response = await fetch(`https://loremasterbe.up.railway.app/questions?theme=${theme}/`, {
+        const response = await fetch(`http://localhost:5000/questions?theme=${theme}/`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();
@@ -138,7 +152,7 @@ export const updatePlayerStats = (score) => async (dispatch) => {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         const token = currentUser?.access_token;
         // console.log('Sending score to server:', score); 
-        const response = await fetch('https://loremasterbe.up.railway.app/auth/update_stats/', {
+        const response = await fetch('http://localhost:5000/auth/update_stats/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -177,7 +191,7 @@ export const fetchUserPowerUps = () => async (dispatch, getState) => {
     const token = getState().user.currentUser.access_token;
 
     try {
-        const response = await fetch('https://loremasterbe.up.railway.app/profile/powerups/', {
+        const response = await fetch('http://localhost:5000/profile/powerups/', {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${token}` },
         });

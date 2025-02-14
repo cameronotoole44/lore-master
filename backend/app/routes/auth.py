@@ -48,15 +48,23 @@ def register():
 
 @bp.route('/login/', methods=['POST', 'OPTIONS'])
 def login():
+    if request.method == 'OPTIONS':
+        return jsonify({}), 200 
+        
+    if not request.is_json:
+        return jsonify({"msg": "Missing JSON in request"}), 415
+        
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
+    
+    if not username or not password:
+        return jsonify({"msg": "Missing username or password"}), 400
 
     user = User.query.filter_by(username=username).first()
 
     if user and user.check_password(password):
         access_token = create_access_token(identity=user.id)
-
         response = jsonify(access_token=access_token)
         response.headers["Authorization"] = f"Bearer {access_token}"
         return response, 200
@@ -74,7 +82,10 @@ def logout():
 @jwt_required()
 def get_profile():
     current_user_id = get_jwt_identity()
+    print(f"Getting profile for user ID: {current_user_id}")
     user = User.query.get(current_user_id)
+    print(f"Found user: {user}")
+    print(f"User stats: games={user.games_played}, total={user.total_score}, high={user.highest_score}")
     
     if not user:
         return jsonify({"msg": "User not found"}), 404
@@ -89,10 +100,10 @@ def get_profile():
 @bp.route('/update_stats/', methods=['POST'])
 @jwt_required()
 def update_stats():
-
     current_user_id = get_jwt_identity()
+    print(f"Updating stats for user ID: {current_user_id}")
     user = User.query.get(current_user_id)
-    # print(f"User found: {user}")
+    print(f"Before update: games={user.games_played}, total={user.total_score}, high={user.highest_score}")
 
     if not user:
         return jsonify({"msg": "User not found"}), 404

@@ -68,11 +68,15 @@ def get_random_theme():
 
     return jsonify({"theme": random_theme}), 200
 
-@bp.route('/daily-challenge/', methods=['GET'])
+@bp.route('/daily-challenge/', methods=['GET', 'OPTIONS'])
 @jwt_required()
 def get_daily_challenge():
+    if request.method == 'OPTIONS':
+        return jsonify({}), 200
+
+    print("Daily challenge route hit")
+    print("Request args:", request.args)
     user_id = get_jwt_identity()
-    
     # installed pytz to handle different timezones for the 12h check(offset-aware*)
     tz = pytz.timezone('America/New_York')  # using my timezone
     today = datetime.now(tz)

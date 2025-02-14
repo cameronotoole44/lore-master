@@ -1,12 +1,10 @@
 # Lore Master
 
-Live Demo: [https://loremasterfe.up.railway.app/](https://loremasterfe.up.railway.app/)
-
 ## The Mythology Trivia Game
 
 **Lore Master** is an interactive trivia game that allows players to test their knowledge of various mythologies from around the world. With daily challenges and an all-time leaderboard, players can compete to see who reigns supreme in the realm of gods and legends.
 
-This project is inspired by my passion for mythology, and I aimed to create an engaging and interactive platform to spark interest in these rich stories while showcasing my skills in SQL databases, Flask applications, and Python. I took a measured approach to development, ensuring my initial goals were attainable before expanding into more complex features. For user authentication, I implemented JWT (JSON Web Tokens), which provided a smoother experience compared to my previous use of bcrypt. I plan to continue enhancing the project by adding new features and refining existing ones. The application is deployed on Railway, where the setup was remarkably straightforward (after thoroughly reading the documentation and stepping away from my earlier brute-force attempts 😅). My PostgreSQL database is also hosted with them.
+This project is inspired by my passion for mythology, and I wanted to create an engaging and interactive trivia game to spark interest in these rich stories while showcasing my skills in SQL databases, Flask applications, and Python. I took a measured approach to development, ensuring my initial goals were attainable before expanding into more complex features. For user authentication, I implemented JWT (JSON Web Tokens), which provided a smoother experience compared to my previous use of bcrypt. I plan to continue enhancing the project by adding new features and refining existing ones. This project was built to demonstrate my skills that I have obtained from my software development program.
 
 ---
 

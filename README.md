@@ -1,6 +1,4 @@
-# Lore Master
-
-## The Mythology Trivia Game
+## Mythology Trivia Game
 
 **Lore Master** is an interactive trivia game that allows players to test their knowledge of various mythologies from around the world. With daily challenges and an all-time leaderboard, players can compete to see who reigns supreme in the realm of gods and legends.
 
@@ -86,3 +84,78 @@ Cumulative scores are tracked and displayed, with the top 10 players featured on
 ### Database ERD
 
 ![Database ERD](./frontend/mythology-trivia-game/src/assets/lore_master_erd.png)
+
+## Installation and Setup
+
+### BACKEND SETUP
+
+1. Clone repo:
+
+```bash
+git clone [https://github.com/cameronotoole44/milestoneProject03]
+cd mythology-trivia/backend
+```
+
+2. Create and activate a virtual environment:
+
+```bash
+python -m venv venv
+# On Windows (Command Prompt)
+venv\Scripts\activate
+# On Windows (Git Bash, WSL, or other Unix-like shells)
+source venv/Scripts/activate
+# On Linux/Mac
+source venv/bin/activate
+```
+
+3. Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Set up your PostgreSQL database:
+
+- Create new database
+- Update your .env with your database credentials
+
+```bash
+DB_DATABASE=your_database_name
+DB_USER=postgres
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+DB_DIALECT=postgresql
+```
+
+5. Initialize database:
+
+```bash
+flask db upgrade
+```
+
+6. Start the Flask server:
+
+```bash
+flask run
+```
+
+### FRONTEND SETUP
+
+1. Navigate to frontend directory:
+
+```bash
+cd /frontend/mythology-trivia-game
+```
+
+2. Install Dependencies:
+
+```bash
+npm install
+```
+
+3. Start development server:
+
+```bash
+npm start
+```

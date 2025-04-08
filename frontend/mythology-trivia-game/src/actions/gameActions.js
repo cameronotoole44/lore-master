@@ -134,7 +134,7 @@ export const fetchQuestions = (theme) => async (dispatch) => {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/questions?theme=${theme}/`, {
+        const response = await fetch(`http://localhost:5000/questions?theme=${theme}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await response.json();

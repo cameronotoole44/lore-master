@@ -1,8 +1,8 @@
 ## Mythology Trivia Game
 
-**Lore Master** is an interactive trivia game that allows players to test their knowledge of various mythologies from around the world. With daily challenges and an all-time leaderboard, players can compete to see who reigns supreme in the realm of gods and legends.
+**Lore Master** is an interactive mythology-themed trivia game where players test their knowledge across five mythological themes — Norse, Greek, Japanese, Irish, and Egyptian. The game features daily challenges, persistent user profiles, and a leaderboard to fuel some friendly divine competition.
 
-This project is inspired by my passion for mythology, and I wanted to create an engaging and interactive trivia game to spark interest in these rich stories while showcasing my skills in SQL databases, Flask applications, and Python. I took a measured approach to development, ensuring my initial goals were attainable before expanding into more complex features. For user authentication, I implemented JWT (JSON Web Tokens), which provided a smoother experience compared to my previous use of bcrypt. I plan to continue enhancing the project by adding new features and refining existing ones. This project was built to demonstrate my skills that I have obtained from my software development program.
+This project is a love letter to mythology and a showcase of my full-stack development skills. Built using Flask, PostgreSQL, and React with Redux, it combines a responsive UI with robust backend functionality, JWT-based authentication, and database-driven game logic.
 
 ---
 
@@ -20,52 +20,46 @@ This project is inspired by my passion for mythology, and I wanted to create an 
 
 ## Features
 
-- **Mythology-Themed Trivia:** Explore trivia from mythologies such as Norse, Greek, Japanese, and more.
-- **Daily Challenges:** New trivia challenges available to play every day.
-- **Leaderboards:** Compare your scores against others to see who ranks at the top.
-- **Responsive Design:** Enjoy a seamless experience on both desktop and mobile devices.
-
----
-
-## Usage
-
-1. Log in or register for an account.
-2. View your dashboard for your daily challenge.
-3. Visit your profile to track stats and view achievements.
-4. Play trivia from five different themes.
-5. Check the leaderboard to see your standing among other players.
+- **Five Mythology Game Boards** – Greek, Norse, Japanese, Irish, and Egyptian
+- **User Authentication** – JWT-based login and registration
+- **Score Tracking** – Points for correct answers, time penalties for wrong ones
+- **Timer + Pause** – Games are timed with pause/resume support
+- **Daily Challenge** – A fresh question each day
+- **Leaderboard** – Top 10 players ranked by score
+- **User Profiles** – Track progress and view stats
+- **Power-Ups System** – (Planned) Bonus features for active players
 
 ---
 
 ## Gameplay
 
-- Players face multiple-choice questions across various mythological themes.
-- Correct answers earn points and may provide time bonuses.
-- Incorrect answers incur a time penalty.
-- The game allows players to pause and resume at any time.
+![Gameboards](./frontend/mythology-trivia-game/src/assets/gameBoardLM.png)
+
+- Choose a mythology-themed game board to begin.
+- Earn points for correct answers and extra seconds.
+- Incorrect answers cost you time.
+- Game can be paused and resumed.
+- View your final score and compare it on the leaderboard.
 
 ---
 
 ## Daily Challenges
 
-Players can attempt the **Daily Challenge** once per day. Currently, the daily challenge serves as a practice question. In future updates, completing the challenge will reward players with special items or bonuses.
+![DailyChallenge](./frontend/mythology-trivia-game/src/assets/dashBoardLM.png)
+
+- Players can attempt the **Daily Challenge** once per day. Currently, the daily challenge serves as a practice question. In future updates, completing the challenge will reward players with special items or bonuses.
 
 ---
 
 ## Leaderboard
 
-Cumulative scores are tracked and displayed, with the top 10 players featured on the leaderboard. Compete daily to improve your ranking and strive for the top spot.
+The top 10 players are ranked by total score. Users can improve their score by playing themed boards and the daily challenge.
 
 ---
 
 ## Coming Soon
 
 - **Chinese Mythology Gameboard:** A thematic expansion featuring questions related to Chinese mythology.
-- **Power-Ups:** Special abilities that provide advantages during gameplay:
-  - **Thor's Fury:** Doubles points for the next 3 questions.
-  - **Athena's Insight:** Removes two incorrect answers, making it easier to identify the correct one.
-  - **Loki's Trick:** Allows you to swap the current question for a new one.
-  - **Chronos Pause:** Temporarily halts the game timer.
 - **Admin Panel:** A dedicated interface for managing game data, player stats, and other controls.
 - **Question Updates:** Regular updates to the question pools will ensure fresh content!
 
@@ -73,11 +67,22 @@ Cumulative scores are tracked and displayed, with the top 10 players featured on
 
 ## Technologies Used
 
-- **Frontend:** React, Redux, JavaScript, Tailwind CSS (I utilized the @apply directive in a separate CSS file for improved code readability during debugging)
-- **Backend:** Flask and Python
-- **Database:** PostgreSQL
-- **Deployment:** Railway
-- **REST API:** Flask-RESTful API
+**Frontend**
+
+- React
+- Redux
+- Tailwind CSS (using @apply in a custom CSS file for easier debugging)
+
+**Backend**
+
+- Flask
+- Flask-JWT-Extended
+- Flask-Migrate
+- SQLAlchemy
+
+**Database**
+
+- PostgreSQL
 
 ---
 
@@ -120,12 +125,15 @@ pip install -r requirements.txt
 - Update your .env with your database credentials
 
 ```bash
-DB_DATABASE=your_database_name
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
-DB_DIALECT=postgresql
+SECRET_KEY=your_flask_secret
+JWT_SECRET_KEY=your_jwt_secret
+
+POSTGRES_USER=your_pg_user
+POSTGRES_PASSWORD=your_pg_password
+POSTGRES_DB=your_db_name
+PGHOST=localhost
+PGPORT=5432
+
 ```
 
 5. Initialize database:

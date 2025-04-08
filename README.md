@@ -45,7 +45,7 @@ This project is a love letter to mythology and a showcase of my full-stack devel
 
 ## Daily Challenges
 
-![DailyChallenge](./frontend/mythology-trivia-game/src/assets/dashBoardLM.png)
+![DailyChallenge](./frontend/mythology-trivia-game/src/assets/dashboardLM.png)
 
 - Players can attempt the **Daily Challenge** once per day. Currently, the daily challenge serves as a practice question. In future updates, completing the challenge will reward players with special items or bonuses.
 
